@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# I keep my project docs in here, the following will ignore them
+*.pdf
+*.docx
