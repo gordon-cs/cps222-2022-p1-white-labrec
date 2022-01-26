@@ -30,7 +30,7 @@ class Board {
     Organism getOrganism(int yCoordinate, int xCoordinate);
     void setOrganism(int yCoordinate, int xCoordinate, Organism state);
   private:
-    Organism boardState[20][52];
+    Organism boardState[totalRows][totalCols];
 };
 
 #endif // PROJECT1_H_
