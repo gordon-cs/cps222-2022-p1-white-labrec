@@ -63,28 +63,50 @@ void printBoard(Board board) {
   }
 };
 
-int countLivingNeighbors(int yCoordinate, int xCoordinate, Board* board) {
-  int count = 0;
+Organism getOrganismState(int yCoordinate, int xCoordinate, Board board) {
+  int neighborCount = 0;
   for (int i = -1; i < 2; i++) {
     for (int j = -1; j < 2; j++) {
       // Ignore 0, 0
       if ((i != 0) || (j != 0)) {
-        if (board->getOrganism(yCoordinate + i, xCoordinate + j) == LIVING) {
-          count++;
+        if (board.getOrganism(yCoordinate + i, xCoordinate + j) == LIVING) {
+          neighborCount++;
         }
       }
     }
   }
-  return count;
-}
+  Organism currentState = board.getOrganism(yCoordinate, xCoordinate);
+  if (currentState == LIVING) {
+    if (neighborCount < 2 || neighborCount > 3) {
+      return NONE;
+    } else {
+      return LIVING;
+    }
+  } else {
+    if (neighborCount == 3) {
+      return LIVING;
+    } else {
+      return NONE;
+    }
+  }
+};
+
+void doGeneration(Board* boardWrite, Board boardRead) {
+  Organism state;
+  for (int i = 1; i < totalRows - 1; i++) {
+    for (int j = 1; j <  totalCols - 1; j++) {
+      state = getOrganismState(i, j, boardRead);
+      boardWrite->setOrganism(i, j, state);
+    }
+  }
+};
+
 
 int main() {
   // Set up board
 
-  // increment index
-  // take the input from user
-  // ask for input for another point
-  // end if they do not add another point
+  // Get user input for number of organisms, locations of organisms and
+  // number of generations
   int numberOfOrganisms;
   int generations;
 
@@ -107,14 +129,28 @@ int main() {
   while (cin.get() != '\n') { }
  
   // Initial board
-  Board* board = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
+  Board* boardEven = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
+  Board* boardOdd = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
   cout << ESC << "[H" << ESC << "[J" << "Initial:" << endl;
+  // initial print
+  printBoard(*boardEven);
 
-  // board loop
-  printBoard(*board);
-  // missing line here from implementation notes
   cout << ESC << "[23;1H" << ESC << "[K" << "Press RETURN to continue";
-  while (cin.get() != '\n') { /* Intentionally empty loop body */ };
+  while (cin.get() != '\n') { };
+
+  for (int generation = 1; generation < generations + 1; generation++) {
+    cout << ESC << "[H" << "Generation " << generation << ":" << endl;
+    if (generation % 2 == 0) {
+      doGeneration(boardEven, *boardOdd);
+      printBoard(*boardEven);
+    } else {
+      doGeneration(boardOdd, *boardEven);
+      printBoard(*boardOdd);
+    }
+
+    cout << ESC << "[23;1H" << ESC << "[K" << "Press RETURN to continue";
+    while (cin.get() != '\n') { };
+  }
 
   return 0;
 };
