@@ -6,6 +6,8 @@ using std::endl;
 #include "project1.h"
 
 Board::Board(int yCoordinates[], int xCoordinates[], int coordinateLength) {
+  
+  // Initialize Border and set the inside of the frame to empty
   for (int i = 0; i < totalRows; i++) {
     for (int j = 0; j < totalCols; j++) {
       if (i == 0 || i == totalRows - 1 || j == 0 || j == totalCols - 1) {
@@ -16,6 +18,7 @@ Board::Board(int yCoordinates[], int xCoordinates[], int coordinateLength) {
     }
   }
   
+  // Set the user inputted coordinates to LIVING
   for (int i = 0; i < coordinateLength; i++) {
     boardState[yCoordinates[i] + 1][xCoordinates[i] + 1] = LIVING;
   }
@@ -30,6 +33,7 @@ void Board::setOrganism(int yCoordinate, int xCoordinate, Organism state) {
 };
 
 void printBoard(Board board) {
+  // Print the border to the special characters representing the border
   for (int i = 0; i < totalRows; i++) {
     for (int j = 0; j < totalCols; j++) {
       if (i == 0 || i == totalRows - 1) {
@@ -49,7 +53,7 @@ void printBoard(Board board) {
           cout << "|" << endl;
         }
       } else {
-        if (board.getOrganism(i, j)) {
+        if (board.getOrganism(i, j) == LIVING) {
           cout << "*";
         } else {
           cout << " ";

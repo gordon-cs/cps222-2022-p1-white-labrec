@@ -1,5 +1,5 @@
-// Declares classes and functions to be used for simulating conways
-// game of life for CPS222 Data Structures and Algorithms at Gordon College
+// Declares classes and functions to be used for simulating Conway's
+// Game of Life for CPS222 Data Structures and Algorithms at Gordon College
 
 // Authors: Silas White nad Gavin Labrec
 
@@ -30,6 +30,8 @@ class Board {
     Organism getOrganism(int yCoordinate, int xCoordinate);
     void setOrganism(int yCoordinate, int xCoordinate, Organism state);
   private:
+    // Private matrix (array of arrays) representing the board, including
+    // border, living, and dead parts of the board
     Organism boardState[totalRows][totalCols];
 };
 
