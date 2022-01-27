@@ -118,7 +118,7 @@ int main() {
   cout << "Locations? ";
   int x, y;
   for (int i = 0; i < numberOfOrganisms; i++) {
-    cin >> x >> y;
+    cin >> y >> x;
     yCoordinates[i] = y;
     xCoordinates[i] = x;
   }
