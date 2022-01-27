@@ -68,8 +68,8 @@ int main() {
   int xCoordinates [1];
   yCoordinates[0] = 1;
   xCoordinates[0] = 1;
-  Board board = Board(yCoordinates, xCoordinates, 1);
-  printBoard(board);
+  Board* board = new Board(yCoordinates, xCoordinates, 1);
+  printBoard(*board);
 
   return 0;
 };
