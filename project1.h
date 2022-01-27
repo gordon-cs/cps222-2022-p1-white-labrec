@@ -26,7 +26,7 @@ class Board {
     // Constructor
     Board(int yCoordinates[], int xCoordinates[], int coordinateLength);
     // ~Board();
-    int countLivingNeighbors(int yCoordinate, int xCoordinate, Board board);
+    int countLivingNeighbors(int yCoordinate, int xCoordinate, Board* board);
     Organism getOrganism(int yCoordinate, int xCoordinate);
     void setOrganism(int yCoordinate, int xCoordinate, Organism state);
   private:

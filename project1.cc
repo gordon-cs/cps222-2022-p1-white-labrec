@@ -20,7 +20,7 @@ Board::Board(int yCoordinates[], int xCoordinates[], int coordinateLength) {
   
   // Set the user inputted coordinates to LIVING
   for (int i = 0; i < coordinateLength; i++) {
-    boardState[yCoordinates[i] + 1][xCoordinates[i] + 1] = LIVING;
+    boardState[yCoordinates[i]][xCoordinates[i]] = LIVING;
   }
 };
 
@@ -55,7 +55,7 @@ void printBoard(Board board) {
       } else {
         if (board.getOrganism(i, j) == LIVING) {
           cout << "*";
-        } else {
+        } else if (board.getOrganism(i, j) == NONE) {
           cout << " ";
         }
       }
@@ -63,13 +63,29 @@ void printBoard(Board board) {
   }
 };
 
+int countLivingNeighbors(int yCoordinate, int xCoordinate, Board* board) {
+  int count = 0;
+  for (int i = -1; i < 2; i++) {
+    for (int j = -1; j < 2; j++) {
+      // Ignore 0, 0
+      if ((i != 0) || (j != 0)) {
+        if (board->getOrganism(yCoordinate + i, xCoordinate + j) == LIVING) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
+
 int main() {
   int yCoordinates [1];
   int xCoordinates [1];
-  yCoordinates[0] = 1;
-  xCoordinates[0] = 1;
+  yCoordinates[0] = 1 + 1;
+  xCoordinates[0] = 1 + 1;
   Board* board = new Board(yCoordinates, xCoordinates, 1);
   printBoard(*board);
+  
 
   return 0;
 };
