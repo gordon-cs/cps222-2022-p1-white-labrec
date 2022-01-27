@@ -79,13 +79,42 @@ int countLivingNeighbors(int yCoordinate, int xCoordinate, Board* board) {
 }
 
 int main() {
-  int yCoordinates [1];
-  int xCoordinates [1];
-  yCoordinates[0] = 1 + 1;
-  xCoordinates[0] = 1 + 1;
-  Board* board = new Board(yCoordinates, xCoordinates, 1);
+  // Set up board
+
+  // increment index
+  // take the input from user
+  // ask for input for another point
+  // end if they do not add another point
+  int numberOfOrganisms;
+  int generations;
+
+  cout << "How many organisms initially? ";
+  cin >> numberOfOrganisms;
+  int yCoordinates [numberOfOrganisms];
+  int xCoordinates [numberOfOrganisms];
+
+  cout << "Locations? ";
+  int x, y;
+  for (int i = 0; i < numberOfOrganisms; i++) {
+    cin >> x >> y;
+    yCoordinates[i] = y;
+    xCoordinates[i] = x;
+  }
+
+  cout << "Generations? ";
+  cin >> generations;
+
+  while (cin.get() != '\n') { }
+ 
+  // Initial board
+  Board* board = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
+  cout << ESC << "[H" << ESC << "[J" << "Initial:" << endl;
+
+  // board loop
   printBoard(*board);
-  
+  // missing line here from implementation notes
+  cout << ESC << "[23;1H" << ESC << "[K" << "Press RETURN to continue";
+  while (cin.get() != '\n') { /* Intentionally empty loop body */ };
 
   return 0;
 };

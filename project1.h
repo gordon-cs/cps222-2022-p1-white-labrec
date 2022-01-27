@@ -18,6 +18,7 @@ static const int activeRows = 18;
 static const int activeCols = 50;
 static const int totalRows = activeRows + 2;
 static const int totalCols = activeCols + 2;
+static const char ESC = 27;
 
 // Holds the information about the board of organisms and is respobsible for simulating generations, counting neighbors,
 // and providing accessors and mutators for the data
