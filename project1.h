@@ -24,10 +24,14 @@ static const char ESC = 27;
 // and providing accessors and mutators for the data
 class Board {
   public:
-    // Constructor
+    // Constructor for the board
     Board(int yCoordinates[], int xCoordinates[], int coordinateLength);
-    // ~Board();
+
+    // Counts the living organisms that are around the cell indexed at yCoordinate
+    // and xCoordinate. Board passed as pointer
     int countLivingNeighbors(int yCoordinate, int xCoordinate, Board* board);
+
+    // Accessor method for an organism specified by yCoordinate and xCoordinate
     Organism getOrganism(int yCoordinate, int xCoordinate);
     void setOrganism(int yCoordinate, int xCoordinate, Organism state);
   private:
