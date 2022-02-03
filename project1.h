@@ -22,6 +22,7 @@ static const char ESC = 27;
 
 
 // Creates the board for Conway's Game of Life will use to create its simulation
+// Contains accessor, mutator, and constructor to manipulate the board
 class Board {
   public:
   
