@@ -30,7 +30,6 @@
 *.exe
 *.out
 *.app
-*.in
 
 # I keep my project docs in here, the following will ignore them
 *.pdf
