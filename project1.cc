@@ -6,7 +6,7 @@ using std::endl;
 #include "project1.h"
 
 Board::Board(int yCoordinates[], int xCoordinates[], int coordinateLength) {
-  
+
   // Initialize Border and set the inside of the frame to empty
   for (int i = 0; i < totalRows; i++) {
     for (int j = 0; j < totalCols; j++) {
@@ -132,7 +132,7 @@ int main() {
   Board* boardEven = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
   Board* boardOdd = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
   cout << ESC << "[H" << ESC << "[J" << "Initial:" << endl;
-  // initial print
+  // Initial print
   printBoard(*boardEven);
 
   cout << ESC << "[23;1H" << ESC << "[K" << "Press RETURN to continue";

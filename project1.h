@@ -1,9 +1,8 @@
 // Declares classes and functions to be used for simulating Conway's
 // Game of Life for CPS222 Data Structures and Algorithms at Gordon College
 
-// Authors: Silas White nad Gavin Labrec
+// Authors: Silas White nad Gavin LaBrec
 
-// WIP
 #ifndef PROJECT1_H_
 #define PROJECT1_H_
 
@@ -32,19 +31,20 @@ class Board {
     //
     // Example:
     // Board* board = new Board({ 1, 2 }, {2, 1}, 2);
-    // Which creates a new Board with ogranisms set to living at coordinates 1, 2 and 2, 1
+    // Which creates a new Board with organisms set to living at coordinates 1, 2 and 2, 1
     Board(int yCoordinates[], int xCoordinates[], int coordinateLength);
 
     // Counts the living organisms that are around the cell indexed at yCoordinate
-    // and xCoordinate. Board passed as pointer
+    // and xCoordinate. Board passed as pointer.
     int countLivingNeighbors(int yCoordinate, int xCoordinate, Board* board);
 
     // Accessor method for an organism specified by yCoordinate and xCoordinate
     Organism getOrganism(int yCoordinate, int xCoordinate);
     void setOrganism(int yCoordinate, int xCoordinate, Organism state);
+
   private:
-    // Private matrix (array of arrays) representing the board, including
-    // border, living, and dead parts of the board
+    // Private matrix (array of arrays) of enums representing the board
+    // Includes BORDER, LIVING, and NONE parts of the board
     Organism boardState[totalRows][totalCols];
 };
 
