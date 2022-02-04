@@ -29,6 +29,7 @@
 # Executables
 *.exe
 *.app
+project1
 
 # I keep my project docs in here, the following will ignore them
 *.pdf

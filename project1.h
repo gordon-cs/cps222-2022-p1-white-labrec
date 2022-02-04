@@ -3,7 +3,6 @@
 
 // Authors: Silas White nad Gavin Labrec
 
-// WIP
 #ifndef PROJECT1_H_
 #define PROJECT1_H_
 
@@ -31,16 +30,16 @@ class Board {
     // and xCoordinates array.
     //
     // Example:
-    // Board* board = new Board({ 1, 2 }, {2, 1}, 2);
-    // Which creates a new Board with ogranisms set to living at coordinates 1, 2 and 2, 1
+    //  Board* board = new Board({ 1, 2 }, {2, 1}, 2);
+    //  Which creates a new Board with ogranisms set to living at coordinates 1, 2 and 2, 1
     Board(int yCoordinates[], int xCoordinates[], int coordinateLength);
 
     // Accessor method for an organism specified by yCoordinate and xCoordinate.
     // Returns organism enum state for the cell corresponding to that location
     //
     // Example:
-    // Board* board = new Board({ 1, 2 }, { 1, 2 }, 2);
-    // Organism state = board->getOrganism(1, 1);
+    //  Board* board = new Board({ 1, 2 }, { 1, 2 }, 2);
+    //  Organism state = board->getOrganism(1, 1);
     // 
     // state now holds value LIVING returned from getOrganism
     Organism getOrganism(int yCoordinate, int xCoordinate);
@@ -49,17 +48,19 @@ class Board {
     // specified by yCoordinate, xCoordinate and an organism state
     // 
     // Example:
-    // Board* board = new Board({ 1, 2 }, { 1, 2 }, 2);
-    // Organism state = board->getOrganism(1, 1);
+    //  Board* board = new Board({ 1, 2 }, { 1, 2 }, 2);
+    //  Organism state = board->getOrganism(1, 1);
     // 
     // state now holds value LIVING returned from getOrganism
-    // board.setOrganism(1, 1, NONE);
-    // Organism state = board->getOrganism(1, 1);
+    //
+    //  board.setOrganism(1, 1, NONE);
+    //  Organism state = board->getOrganism(1, 1);
     // 
     // state now holds value None returned from getOrganism
     void setOrganism(int yCoordinate, int xCoordinate, Organism state);
 
   private:
+
     // Private matrix (array of arrays) of enums representing the board 
     // Includes BORDER, LIVING, and NONE parts of the board
     Organism boardState[totalRows][totalCols];
@@ -70,8 +71,8 @@ class Board {
 // cell, + for corner, | for right or left side, and _ for top or bottom.
 // Example:
 // 
-// Board* newBoard = new Board({ 1, 2 }, { 1, 2 }, 2);
-// printBoard(newBoard);
+//  Board* newBoard = new Board({ 1, 2 }, { 1, 2 }, 2);
+//  printBoard(newBoard);
 // 
 // OUTPUT:
 // +--------------------------------------------------+
