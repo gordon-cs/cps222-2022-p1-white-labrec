@@ -31,7 +31,7 @@ class Board {
     //
     // Example:
     //  Board* board = new Board({ 1, 2 }, {2, 1}, 2);
-    //  Which creates a new Board with ogranisms set to LIVING at coordinates 1, 2 and 2, 1
+    //  Which creates a new Board with organisms set to LIVING at coordinates 1, 2 and 2, 1
     Board(int yCoordinates[], int xCoordinates[], int coordinateLength);
 
     // Accessor method for an organism specified by yCoordinate and xCoordinate.
