@@ -6,7 +6,7 @@ using std::endl;
 #include "project1.h"
 
 Board::Board(int yCoordinates[], int xCoordinates[], int coordinateLength) {
-  
+
   // Initialize Border and set the inside of the frame to empty
   for (int i = 0; i < totalRows; i++) {
     for (int j = 0; j < totalCols; j++) {
@@ -63,39 +63,41 @@ void printBoard(Board board) {
   }
 };
 
-Organism getOrganismState(int yCoordinate, int xCoordinate, Board board) {
-  int neighborCount = 0;
-  for (int i = -1; i < 2; i++) {
-    for (int j = -1; j < 2; j++) {
-      // Ignore 0, 0
-      if ((i != 0) || (j != 0)) {
-        if (board.getOrganism(yCoordinate + i, xCoordinate + j) == LIVING) {
-          neighborCount++;
-        }
-      }
-    }
-  }
-  Organism currentState = board.getOrganism(yCoordinate, xCoordinate);
-  if (currentState == LIVING) {
-    if (neighborCount < 2 || neighborCount > 3) {
-      return NONE;
-    } else {
-      return LIVING;
-    }
-  } else {
-    if (neighborCount == 3) {
-      return LIVING;
-    } else {
-      return NONE;
-    }
-  }
-};
-
 void doGeneration(Board* boardWrite, Board boardRead) {
   Organism state;
+  int neighborCount;
   for (int i = 1; i < totalRows - 1; i++) {
     for (int j = 1; j <  totalCols - 1; j++) {
-      state = getOrganismState(i, j, boardRead);
+
+      // Count number of LIVING organisms around organism
+      neighborCount = 0;
+      for (int y = -1; y < 2; y++) {
+        for (int x = -1; x < 2; x++) {
+          // Ignore 0, 0
+          if ((y != 0) || (x != 0)) {
+            if (boardRead.getOrganism(i + y, j + x) == LIVING) {
+              neighborCount++;
+            }
+          }
+        }
+      }
+
+      // Set organism state according to rules
+      Organism currentState = boardRead.getOrganism(i, j);
+      if (currentState == LIVING) {
+        if (neighborCount < 2 || neighborCount > 3) {
+          state = NONE;
+        } else {
+          state = LIVING;
+        }
+      } else {
+        if (neighborCount == 3) {
+          state = LIVING;
+        } else {
+          state = NONE;
+        }
+      }
+      
       boardWrite->setOrganism(i, j, state);
     }
   }
@@ -132,7 +134,7 @@ int main() {
   Board* boardEven = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
   Board* boardOdd = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
   cout << ESC << "[H" << ESC << "[J" << "Initial:" << endl;
-  // initial print
+  // Initial print
   printBoard(*boardEven);
 
   cout << ESC << "[23;1H" << ESC << "[K" << "Press RETURN to continue";
