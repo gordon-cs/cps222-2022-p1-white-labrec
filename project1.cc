@@ -63,39 +63,40 @@ void printBoard(Board board) {
   }
 };
 
-Organism getOrganismState(int yCoordinate, int xCoordinate, Board board) {
-  int neighborCount = 0;
-  for (int i = -1; i < 2; i++) {
-    for (int j = -1; j < 2; j++) {
-      // Ignore 0, 0
-      if ((i != 0) || (j != 0)) {
-        if (board.getOrganism(yCoordinate + i, xCoordinate + j) == LIVING) {
-          neighborCount++;
-        }
-      }
-    }
-  }
-  Organism currentState = board.getOrganism(yCoordinate, xCoordinate);
-  if (currentState == LIVING) {
-    if (neighborCount < 2 || neighborCount > 3) {
-      return NONE;
-    } else {
-      return LIVING;
-    }
-  } else {
-    if (neighborCount == 3) {
-      return LIVING;
-    } else {
-      return NONE;
-    }
-  }
-};
-
 void doGeneration(Board* boardWrite, Board boardRead) {
   Organism state;
   for (int i = 1; i < totalRows - 1; i++) {
     for (int j = 1; j <  totalCols - 1; j++) {
-      state = getOrganismState(i, j, boardRead);
+
+      // Count number of LIVING organisms around organism
+      int neighborCount = 0;
+      for (int y = -1; y < 2; y++) {
+        for (int x = -1; x < 2; x++) {
+          // Ignore 0, 0
+          if ((y != 0) || (x != 0)) {
+            if (boardRead.getOrganism(i + y, j + x) == LIVING) {
+              neighborCount++;
+            }
+          }
+        }
+      }
+
+      // Set organism state according to rules
+      Organism currentState = boardRead.getOrganism(i, j);
+      if (currentState == LIVING) {
+        if (neighborCount < 2 || neighborCount > 3) {
+          state = NONE;
+        } else {
+          state = LIVING;
+        }
+      } else {
+        if (neighborCount == 3) {
+          state = LIVING;
+        } else {
+          state = NONE;
+        }
+      }
+      
       boardWrite->setOrganism(i, j, state);
     }
   }
