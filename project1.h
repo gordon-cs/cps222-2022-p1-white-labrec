@@ -1,7 +1,7 @@
 // Declares classes and functions to be used for simulating Conway's
 // Game of Life for CPS222 Data Structures and Algorithms at Gordon College
 
-// Authors: Silas White nad Gavin Labrec
+// Authors: Silas White and Gavin LaBrec
 
 #ifndef PROJECT1_H_
 #define PROJECT1_H_

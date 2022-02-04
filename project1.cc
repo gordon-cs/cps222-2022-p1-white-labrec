@@ -6,7 +6,7 @@ using std::endl;
 #include "project1.h"
 
 Board::Board(int yCoordinates[], int xCoordinates[], int coordinateLength) {
-  
+
   // Initialize Border and set the inside of the frame to empty
   for (int i = 0; i < totalRows; i++) {
     for (int j = 0; j < totalCols; j++) {
@@ -73,18 +73,16 @@ void doGeneration(Board* boardWrite, Board boardRead) {
   // Initialize local variables
   Organism state;
   int neighborCount;
-
-  // Loop through the board
   for (int i = 1; i < totalRows - 1; i++) {
     for (int j = 1; j <  totalCols - 1; j++) {
-      neighborCount = 0;
 
-      // Loop around the neighbors
-      for (int k = -1; k < 2; k++) {
-        for (int l = -1; l < 2; l++) {
+      // Count number of LIVING organisms around organism
+      neighborCount = 0;
+      for (int y = -1; y < 2; y++) {
+        for (int x = -1; x < 2; x++) {
           // Ignore 0, 0
-          if ((k != 0) || (l != 0)) {
-            if (boardRead.getOrganism(i + k, j + l) == LIVING) {
+          if ((y != 0) || (x != 0)) {
+            if (boardRead.getOrganism(i + y, j + x) == LIVING) {
               neighborCount++;
             }
           }
@@ -106,7 +104,7 @@ void doGeneration(Board* boardWrite, Board boardRead) {
           state = NONE;
         }
       }
-
+      
       boardWrite->setOrganism(i, j, state);
     }
   }
@@ -142,7 +140,6 @@ int main() {
   Board* boardOdd = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
 
   cout << ESC << "[H" << ESC << "[J" << "Initial:" << endl;
-
   // Initial print
   printBoard(*boardEven);
 
