@@ -26,12 +26,12 @@ class Board {
   public:
   
     // Constructor for the board. Takes yCoordinates and xCoordinates array along with the length of those arrays.
-    // The board will then be constructed with organisms set to living at the coordinates specified by the yCoordinates
+    // The board will then be constructed with organisms set to LIVING at the coordinates specified by the yCoordinates
     // and xCoordinates array.
     //
     // Example:
     //  Board* board = new Board({ 1, 2 }, {2, 1}, 2);
-    //  Which creates a new Board with ogranisms set to living at coordinates 1, 2 and 2, 1
+    //  Which creates a new Board with ogranisms set to LIVING at coordinates 1, 2 and 2, 1
     Board(int yCoordinates[], int xCoordinates[], int coordinateLength);
 
     // Accessor method for an organism specified by yCoordinate and xCoordinate.
