@@ -65,11 +65,12 @@ void printBoard(Board board) {
 
 void doGeneration(Board* boardWrite, Board boardRead) {
   Organism state;
+  int neighborCount;
   for (int i = 1; i < totalRows - 1; i++) {
     for (int j = 1; j <  totalCols - 1; j++) {
 
       // Count number of LIVING organisms around organism
-      int neighborCount = 0;
+      neighborCount = 0;
       for (int y = -1; y < 2; y++) {
         for (int x = -1; x < 2; x++) {
           // Ignore 0, 0
