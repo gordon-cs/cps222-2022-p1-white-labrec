@@ -17,7 +17,7 @@ Board::Board(int yCoordinates[], int xCoordinates[], int coordinateLength) {
       }
     }
   }
-  
+
   // Set the user inputted coordinates to LIVING
   for (int i = 0; i < coordinateLength; i++) {
     boardState[yCoordinates[i]][xCoordinates[i]] = LIVING;
@@ -38,7 +38,7 @@ void printBoard(Board board) {
   for (int i = 0; i < totalRows; i++) {
     for (int j = 0; j < totalCols; j++) {
       if (i == 0 || i == totalRows - 1) {
-        
+
         // Check if it is the border, and print the proper symbol
         if (j != 0 && j != totalCols - 1) {
           cout << "-";
@@ -76,6 +76,8 @@ void doGeneration(Board* boardWrite, Board boardRead) {
   for (int i = 1; i < totalRows - 1; i++) {
     for (int j = 1; j <  totalCols - 1; j++) {
 
+      //RT This would be better as a private helper method
+
       // Count number of LIVING organisms around organism
       neighborCount = 0;
       for (int y = -1; y < 2; y++) {
@@ -104,12 +106,15 @@ void doGeneration(Board* boardWrite, Board boardRead) {
           state = NONE;
         }
       }
-      
+
       boardWrite->setOrganism(i, j, state);
     }
   }
 }
 
+//RT main() should be in a separate file.  The reasons are more
+//apparent in larger projects, but include catching certain types of
+//errors.
 
 int main() {
   // Get user input for number of organisms, locations of organisms and
@@ -134,7 +139,7 @@ int main() {
   cin >> generations;
 
   while (cin.get() != '\n') { }
- 
+
   // Initialize boards to user inputted values
   Board* boardEven = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
   Board* boardOdd = new Board(yCoordinates, xCoordinates, numberOfOrganisms);
